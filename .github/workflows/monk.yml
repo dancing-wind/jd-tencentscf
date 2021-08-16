@@ -36,38 +36,7 @@ jobs:
         cp ./monk/monk.sh /home/runner/work/jd-tencentscf/jd-tencentscf
         bash monk.sh       
    
-    - name: git-sync
-      uses: wei/git-sync@v3
-      with:
-          source_repo: "git@github.com:wudongdefeng/tem-update.git"
-          source_branch: "master"
-          destination_repo: "git@code.aliyun.com:wudongdefeng/jd_scripts.git"
-          destination_branch: "master"
-          
-          source_ssh_private_key: ${{ secrets.USER_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          destination_ssh_private_key: ${{ secrets.ALIYUN_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`    
-                
-    
-    - name: git-sync
-      uses: wei/git-sync@v3
-      with:
-          source_repo: "git@github.com:wudongdefeng/tem-update.git"
-          source_branch: "master"
-          destination_repo: "git@gitee.com:wudongdefeng/jd_scripts.git"
-          destination_branch: "master"
 
-          source_ssh_private_key: ${{ secrets.USER_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-    - name: git-sync
-      uses: wei/git-sync@v3
-      with:
-          source_repo: "git@github.com:wudongdefeng/tem-update.git"
-          source_branch: "master"
-          destination_repo: "git@gitlab.com:wudongdefeng/hikerjs.git"
-          destination_branch: "master"
-
-          source_ssh_private_key: ${{ secrets.USER_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          destination_ssh_private_key: ${{ secrets.GITLAB_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
     - name: git-sync
       uses: wei/git-sync@v3
       with:
@@ -82,12 +51,12 @@ jobs:
       uses: wei/git-sync@v3
       with:
           source_repo: "git@github.com:wudongdefeng/tem-update.git"
-          source_branch: "master"
-          destination_repo: "git@e.coding.net:wudongdefeng/wudongdefeng/jd_scripts.git"
-          destination_branch: "master"
+          source_branch: "v3"
+          destination_repo: "git@gitee.com:wudongdefeng/jd_scripts.git"
+          destination_branch: "v3"
 
           source_ssh_private_key: ${{ secrets.USER_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          destination_ssh_private_key: ${{ secrets.CODING_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY` 
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`     
         
        
 
