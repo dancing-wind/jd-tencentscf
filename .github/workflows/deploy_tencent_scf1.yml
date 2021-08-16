@@ -124,6 +124,7 @@ jobs:
           git clone https://github.com/wuzhi04/MyActions.git ./ut
           cp -r ./jingdong/*.js /home/runner/work/jd-tencentscf/jd-tencentscf
           cp ./monk/serverless1.yml ./serverless.yml
+          mkdir utils
           cp -r ./monk/test/*.js ./
           cp -r ./ut/utils/*.* ./utils
           rm -rf ./ut
