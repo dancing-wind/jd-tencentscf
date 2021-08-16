@@ -127,8 +127,10 @@ jobs:
           cp -r ./jingdong/*.js /home/runner/work/jd-tencentscf/jd-tencentscf
           cp ./monk/serverless.yml ./serverless.yml
           cp -r ./monk/test/*.js ./
+          mkdir utils
           cp -r ./ut/utils/*.* ./utils
           rm -rf ./ut
+          rm -rf ./jingdong
           rm -rf ./monk
       - name: "将Secrets里面配置的变量添加到severless.yml里面作为环境变量"
         run: |
