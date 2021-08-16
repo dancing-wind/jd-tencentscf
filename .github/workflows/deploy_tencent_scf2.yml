@@ -2,7 +2,7 @@ name: 2部署到腾讯云函数2
 on:
   workflow_dispatch:
   schedule:
-    - cron: '50 */4 * * *'
+    - cron: '50 2-23/4 * * *'
   watch:
     types: started
   repository_dispatch:
