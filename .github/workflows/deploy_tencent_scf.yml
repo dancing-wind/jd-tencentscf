@@ -112,7 +112,7 @@ jobs:
           git clone git@github.com:wudongdefeng/monk.git ./monk
           git clone git@github.com:wudongdefeng/jingdong.git ./jingdong
           git clone https://github.com/wuzhi04/MyActions.git ./ut
-          cp -r ./jingdong/*.js /home/runner/work/jd-tencentscf/jd-tencentscf
+          cp -r ./jingdong/*.* /home/runner/work/jd-tencentscf/jd-tencentscf
           cp ./monk/serverless.yml ./serverless.yml
           cp -r ./monk/test/*.js ./
           mkdir utils
