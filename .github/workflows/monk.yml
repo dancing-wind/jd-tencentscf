@@ -33,6 +33,7 @@ jobs:
         ssh-keyscan github.com > ~/.ssh/known_hosts
         
         git clone -b master git@github.com:wudongdefeng/monk.git ./monk
+        cp ./monk/monk.sh /home/runner/work/jd-tencentscf/jd-tencentscf
         bash monk.sh
         
         
