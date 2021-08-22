@@ -1,0 +1,31 @@
+﻿name: test 
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 21,22,23,2,9-21/1 * * *"
+  watch:
+    types: started
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+
+    steps:
+    - uses: actions/checkout@main
+      
+    - name: time GMT+8 北京时间
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai' 
+    - name: 获取当前日期
+      id: date
+      run: echo "::set-output name=DATE::$(date +'%Y-%m-%d %H:%M:%S')" 
+   
+    - uses: actions/checkout@v1
+    - name: test code
+      run: |
+        curl -O https://github.wudongdefeng.workers.dev/Aaron-lv/sync/raw/jd_scripts/jd_jxnc.js
+        sed -i "192c\        \"url\": \`https://code.aliyun.com/wudongdefeng/updateteam/raw/master/shareCodes/jd_updateCash.json\`," jd_jxnc.js
+        cat jd_jxnc.js
