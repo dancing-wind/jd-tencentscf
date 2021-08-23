@@ -121,7 +121,7 @@ jobs:
           rm -rf ./monk
           rm -rf ./jingdong
           sed -i 's/TENCENT_FUNCTION_NAME/TENCENT_FUNCTION_NAME1/g' tencentscf.js
-          sed -i '52c\let inputYML = ".github/workflows/deploy_tencent_scf1.yml";' tencentscf.js
+          sed -i "52c\      let inputYML = \".github/workflows/deploy_tencent_scf1.yml\";" tencentscf.js
           sudo apt-get update
           sudo apt-get upgrade -y nodejs
           npm i -g n --force
