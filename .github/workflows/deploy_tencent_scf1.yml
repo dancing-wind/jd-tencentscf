@@ -117,6 +117,8 @@ jobs:
           mkdir utils
           cp -r ./monk/test/*.js ./
           cp -r ./ut/utils/*.* ./utils
+          
+          cp -r ./jingdong/utils/*.* ./utils
           rm -rf ./ut
           rm -rf ./monk
           rm -rf ./jingdong
