@@ -4,8 +4,8 @@ if [ -x ~/tsuk ]; then
   else
   echo "克隆失败"
 fi
-git clone -b wen https://github.com/Wenmoux/scripts.git ~/wen
-if [ -x ~/jd ]; then
+git clone -b main https://github.com/JDHelloWorld/jd_scripts.git ~/hello
+if [ -x ~/hello ]; then
    echo "克隆成功"
   else
   echo "克隆失败"
