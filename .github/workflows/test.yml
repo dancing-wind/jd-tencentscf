@@ -1,4 +1,4 @@
-name: jd推送 
+name: test 
 
 on:
   workflow_dispatch:
@@ -26,11 +26,7 @@ jobs:
     - name: Clone source code 克隆源码
       run: |
         
-        mkdir -p ~/.ssh
-        echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com > ~/.ssh/known_hosts
-        
+               
         
         bash test.sh     
    
