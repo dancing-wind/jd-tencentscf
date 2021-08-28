@@ -24,11 +24,8 @@ jobs:
    
     - uses: actions/checkout@v1
     - name: Clone source code 克隆源码
-      run: |
-        
-               
-        
-        bash test.sh     
+      run: |      
+          bash test.sh     
    
 
     
