@@ -1,5 +1,6 @@
 git clone -b master https://github.com/Tsukasa007/my_script.git ~/tsuk
-if [ -e ~/tsuk/*.js ]；then //这里是判断语句，-e表示进行比较结果为真则存在
+cd ~/tsuk
+if [ -e *.js ]；then //这里是判断语句，-e表示进行比较结果为真则存在
 echo "文件存在"
 else
 echo "文件不存在"
