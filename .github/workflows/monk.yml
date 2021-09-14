@@ -64,7 +64,7 @@ jobs:
           token: ${{ secrets.USER_TOKEN }}
           repository: dancing-wind/jd-tencentscf
           retain_days: 1
-          keep_minimum_runs: 0  
+          keep_minimum_runs: 1 
 
    
         
