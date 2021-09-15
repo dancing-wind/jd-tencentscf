@@ -10,8 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    JD_COOKIE: ${{ secrets.JD_COOKIE}}
+    env:
+      JD_COOKIE: ${{ secrets.JD_COOKIE}}
       JD_DEBUG: ${{ secrets.JD_DEBUG}}
       JD_USER_AGENT: ${{ secrets.JD_USER_AGENT}}
       TENCENTSCF_SOURCE_TYPE: ${{ secrets.TENCENTSCF_SOURCE_TYPE}}
