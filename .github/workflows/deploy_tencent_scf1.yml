@@ -11,9 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    env:
-      TZ: Asia/Shanghai
-      JD_COOKIE: ${{ secrets.JD_COOKIE}}
+    JD_COOKIE: ${{ secrets.JD_COOKIE}}
       JD_DEBUG: ${{ secrets.JD_DEBUG}}
       JD_USER_AGENT: ${{ secrets.JD_USER_AGENT}}
       TENCENTSCF_SOURCE_TYPE: ${{ secrets.TENCENTSCF_SOURCE_TYPE}}
@@ -82,21 +80,14 @@ jobs:
       DYJ_PACKETID: ${{ secrets.DYJ_PACKETID}}
       DYJ_INVITER: ${{ secrets.DYJ_INVITER}}
       InviterPin: ${{ secrets.InviterPin}}
-      JD_TRY: ${{ secrets.JD_TRY}}
-      JD_WXJ: ${{ secrets.JD_WXJ}}
-      SHARECODE_WXJ: ${{ secrets.SHARECODE_WXJ}}
-      HELPAUTHOR_WXJ: ${{ secrets.HELPAUTHOR_WXJ}}
-      JXNC_NOTIFY_LEVEL: ${{ secrets.JXNC_NOTIFY_LEVEL}}
-      CFD_HELP_HW: ${{ secrets.CFD_HELP_HW}}
-      HELP_HW: ${{ secrets.HELP_HW}}
-      CFD_HELP_POOL: ${{ secrets.CFD_HELP_POOL}}
-      HELP_POOL: ${{ secrets.HELP_POOL}}
+      JD_TRY: ${{ secrets.JD_TRY}}      
+      JXNC_NOTIFY_LEVEL: ${{ secrets.JXNC_NOTIFY_LEVEL}}      
       JD_TRY_APPLYNUMFILTER: ${{ secrets.JD_TRY_APPLYNUMFILTER}}
       JD_TRY_TABID: ${{ secrets.JD_TRY_TABID}}
       JD_TRY_TITLEFILTERS: ${{ secrets.JD_TRY_TITLEFILTERS}}
       JD_TRY_PASSZC: ${{ secrets.JD_TRY_PASSZC}}
       JD_TRY_MAXLENGTH: ${{ secrets.JD_TRY_MAXLENGTH}}
-      JD_TRY_PRICE: ${{ secrets.JD_TRY_PRICE}}
+      JD_TRY_PRICE: ${{ secrets.JD_TRY_PRICE}}      
     steps:
       - name: Checkout
         uses: actions/checkout@v2
