@@ -91,6 +91,13 @@ jobs:
       HELP_HW: ${{ secrets.HELP_HW}}
       CFD_HELP_POOL: ${{ secrets.CFD_HELP_POOL}}
       HELP_POOL: ${{ secrets.HELP_POOL}}
+      JD_TRY_APPLYNUMFILTER: ${{ secrets.JD_TRY_APPLYNUMFILTER}}
+      JD_TRY_TABID: ${{ secrets.JD_TRY_TABID}}
+      JD_TRY_TITLEFILTERS: ${{ secrets.JD_TRY_TITLEFILTERS}}
+      JD_TRY_PASSZC: ${{ secrets.JD_TRY_PASSZC}}
+      JD_TRY_MAXLENGTH: ${{ secrets.JD_TRY_MAXLENGTH}}
+      JD_TRY_PRICE: ${{ secrets.JD_TRY_PRICE}}
+      
     steps:
       - name: Checkout
         uses: actions/checkout@v2
