@@ -86,11 +86,7 @@ jobs:
       JD_WXJ: ${{ secrets.JD_WXJ}}
       SHARECODE_WXJ: ${{ secrets.SHARECODE_WXJ}}
       HELPAUTHOR_WXJ: ${{ secrets.HELPAUTHOR_WXJ}}
-      JXNC_NOTIFY_LEVEL: ${{ secrets.JXNC_NOTIFY_LEVEL}}
-      CFD_HELP_HW: ${{ secrets.CFD_HELP_HW}}
-      HELP_HW: ${{ secrets.HELP_HW}}
-      CFD_HELP_POOL: ${{ secrets.CFD_HELP_POOL}}
-      HELP_POOL: ${{ secrets.HELP_POOL}}
+      JXNC_NOTIFY_LEVEL: ${{ secrets.JXNC_NOTIFY_LEVEL}}      
       jd_zdjr_activityId: ${{ secrets.JD_ZDJR_ACTIVITYID}}
       jd_zdjr_activityUrl: ${{ secrets.JD_ZDJR_ACTIVITYURL}}
       JD_TRY_APPLYNUMFILTER: ${{ secrets.JD_TRY_APPLYNUMFILTER}}
