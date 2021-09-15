@@ -9,9 +9,7 @@ on:
     types: deploy_tencent_scf2
 jobs:
   build:
-    runs-on: ubuntu-latest    
-    env:
-
+    runs-on: ubuntu-latest   
     env:
       TZ: Asia/Shanghai
       JD_COOKIE: ${{ secrets.JD_COOKIE}}
