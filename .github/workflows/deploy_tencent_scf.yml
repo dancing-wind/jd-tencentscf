@@ -91,6 +91,7 @@ jobs:
       HELP_HW: ${{ secrets.HELP_HW}}
       CFD_HELP_POOL: ${{ secrets.CFD_HELP_POOL}}
       HELP_POOL: ${{ secrets.HELP_POOL}}
+      JD_BEAN_CHANGE_SENDNUM: ${{ secrets.JD_BEAN_CHANGE_SENDNUM}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -211,6 +212,7 @@ jobs:
           if [ $JD_WXJ ]; then sed -i "/variables/a\      JD_WXJ: $JD_WXJ" serverless.yml; fi;
           if [ $SHARECODE_WXJ ]; then sed -i "/variables/a\      SHARECODE_WXJ: $SHARECODE_WXJ" serverless.yml; fi;
           if [ $HELPAUTHOR_WXJ ]; then sed -i "/variables/a\      HELPAUTHOR_WXJ: $HELPAUTHOR_WXJ" serverless.yml; fi;
+          if [ $JD_BEAN_CHANGE_SENDNUM ]; then sed -i "/variables/a\      JD_BEAN_CHANGE_SENDNUM: $JD_BEAN_CHANGE_SENDNUM" serverless.yml; fi;
           cat serverless.yml          
           env
 
