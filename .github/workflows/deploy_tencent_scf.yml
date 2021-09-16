@@ -92,6 +92,9 @@ jobs:
       CFD_HELP_POOL: ${{ secrets.CFD_HELP_POOL}}
       HELP_POOL: ${{ secrets.HELP_POOL}}
       JD_BEAN_CHANGE_SENDNUM: ${{ secrets.JD_BEAN_CHANGE_SENDNUM}}
+      JD_TRY_TABID: ${{ secrets.JD_TRY_TABID}}
+      JD_TRY_MAXLENGTH: ${{ secrets.JD_TRY_MAXLENGTH}}
+      JD_TRY_PRICE: ${{ secrets.JD_TRY_PRICE}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -213,6 +216,10 @@ jobs:
           if [ $SHARECODE_WXJ ]; then sed -i "/variables/a\      SHARECODE_WXJ: $SHARECODE_WXJ" serverless.yml; fi;
           if [ $HELPAUTHOR_WXJ ]; then sed -i "/variables/a\      HELPAUTHOR_WXJ: $HELPAUTHOR_WXJ" serverless.yml; fi;
           if [ $JD_BEAN_CHANGE_SENDNUM ]; then sed -i "/variables/a\      JD_BEAN_CHANGE_SENDNUM: $JD_BEAN_CHANGE_SENDNUM" serverless.yml; fi;
+          if [ $JD_TRY_TABID ]; then sed -i "/variables/a\      JD_TRY_TABID: $JD_TRY_TABID" serverless.yml; fi;
+          if [ $JD_TRY_APPLYNUMFILTER ]; then sed -i "/variables/a\      JD_TRY_APPLYNUMFILTER: $JD_TRY_APPLYNUMFILTER" serverless.yml; fi;
+          if [ $JD_TRY_MAXLENGTH ]; then sed -i "/variables/a\      JD_TRY_MAXLENGTH: $JD_TRY_MAXLENGTH" serverless.yml; fi;
+          if [ $JD_TRY_PRICE ]; then sed -i "/variables/a\      JD_TRY_PRICE: $JD_TRY_PRICE" serverless.yml; fi;
           cat serverless.yml          
           env
 
