@@ -62,7 +62,7 @@ jobs:
       uses: Mattraks/delete-workflow-runs@main
       with:
           token: ${{ secrets.USER_TOKEN }}
-          repository: dancing-wind/jd-tencentscf
+          repository: ${{ github.repository }}
           retain_days: 2
           keep_minimum_runs: 6 
 
