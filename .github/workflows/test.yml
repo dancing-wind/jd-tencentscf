@@ -25,7 +25,15 @@ jobs:
     - uses: actions/checkout@v1
     - name: Clone source code 克隆源码
       run: |      
-          bash test.sh     
+          bash test.sh
+          
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+          token: ${{ secrets.USER_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 2
+          keep_minimum_runs: 6       
    
 
     
