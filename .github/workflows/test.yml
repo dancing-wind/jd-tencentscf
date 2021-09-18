@@ -1,44 +1,24 @@
-name: test 
-
+name: Delete old workflow runs
 on:
   workflow_dispatch:
-  
-  watch:
-    types: started
+    inputs:
+      days: #要保留的天数
+        description: 'Number of days.'
+        required: true
+        default: 2
+      runs: #要为每个yml保留的个数
+        description: 'Number of runs.'
+        required: true
+        default: 6
 
 jobs:
-  build:
-
-    runs-on: ubuntu-18.04
-
-
+  del_runs:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
-      
-    - name: time GMT+8 北京时间
-      run: |
-        sudo timedatectl set-timezone 'Asia/Shanghai' 
-    - name: 获取当前日期
-      id: date
-      run: echo "::set-output name=DATE::$(date +'%Y-%m-%d %H:%M:%S')" 
-   
-    - uses: actions/checkout@v1
-    - name: Clone source code 克隆源码
-      run: |      
-          bash test.sh
-          
-    - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@main
-      with:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@main
+        with:
           token: ${{ secrets.USER_TOKEN }}
           repository: ${{ github.repository }}
           retain_days: 2
-          keep_minimum_runs: 6       
-   
-
-    
-         
-   
-        
-    
-    
+          keep_minimum_runs: 6
