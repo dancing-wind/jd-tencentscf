@@ -1,4 +1,4 @@
-name: jddj_bean_plantBeans
+name: plantBeans
 
 on:
     workflow_dispatch:
@@ -17,7 +17,7 @@ jobs:
             - name: Checkout
               run: |
                   git clone -b main https://github.com/passerby-b/JDDJ ~/jd
-                  cp -r ~/jd/*.* /home/runner/work/jddj/jddj                  
+                  cp -r ~/jd/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
                   sed -i '/GITHUB/,+6d' jddjCookie.js 
                   sed -i '/GITHUB/,+6d' jdCookie.js
                   
