@@ -11,8 +11,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
-        if: github.event.repository.owner.id == github.event.sender.id
+        runs-on: ubuntu-latest        
         steps:
             #- uses: actions/checkout@v1
             - name: Checkout
@@ -21,6 +20,7 @@ jobs:
                   cp -r ~/jd/*.* /home/runner/work/jddj/jddj                  
                   sed -i '/GITHUB/,+6d' jddjCookie.js 
                   sed -i '/GITHUB/,+6d' jdCookie.js
+                  
             - name: Use Node.js 14.x
               uses: actions/setup-node@v1
               with:
