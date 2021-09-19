@@ -19,8 +19,8 @@ jobs:
               run: |
                   git clone -b main https://github.com/passerby-b/JDDJ ~/jd
                   cp -r ~/jd/*.* /home/runner/work/jddj/jddj                  
-                  cp /home/runner/work/jddj/jddj/jdCookie1.js /home/runner/work/jddj/jddj/jdCookie.js
-                  cp /home/runner/work/jddj/jddj/jddjCookie1.js /home/runner/work/jddj/jddj/jddjCookie.js
+                  sed -i '/GITHUB/,+6d' jddjCookie.js 
+                  sed -i '/GITHUB/,+6d' jdCookie.js
             - name: Use Node.js 14.x
               uses: actions/setup-node@v1
               with:
