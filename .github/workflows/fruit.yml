@@ -1,4 +1,4 @@
-name: fruit
+name: points
 
 on:
     workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     watch:
         types: [started]
     repository_dispatch:
-        types: fruit
+        types: points
 
 jobs:
     build:
@@ -31,7 +31,7 @@ jobs:
                   
                   npm install                   
                   node jddj_getPoints.js
-                  node jddj_fruit_collectWater.js                  
+                                    
               env:   
                   JD_COOKIE: ${{ secrets.JD_COOKIE}}
                   JD_DEBUG: ${{ secrets.JD_DEBUG}}
