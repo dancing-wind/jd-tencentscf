@@ -3,7 +3,7 @@ name: plantBeans
 on:
     workflow_dispatch:
     schedule:
-        - cron: "1 2,13 * * *"
+        - cron: "1 10,18,22 * * *"
     watch:
         types: [started]
     repository_dispatch:
@@ -31,7 +31,8 @@ jobs:
                   
                   npm install                   
                   node jddj_bean.js
-                  node jddj_plantBeans.js
+                  node jddj_plantBeans.js                 
+                  node jddj_fruit.js
               env:   
                   JD_COOKIE: ${{ secrets.JD_COOKIE}}
                   JD_DEBUG: ${{ secrets.JD_DEBUG}}
