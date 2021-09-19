@@ -28,9 +28,7 @@ jobs:
                   
             - name: run
               run: |
-                  
                   npm install                   
-                  
                   node jddj_fruit_collectWater.js                  
               env:   
                   JD_COOKIE: ${{ secrets.JD_COOKIE}}
