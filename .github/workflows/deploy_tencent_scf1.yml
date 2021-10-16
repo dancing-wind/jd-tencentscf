@@ -95,6 +95,7 @@ jobs:
       JD_TRY_TABID: ${{ secrets.JD_TRY_TABID}}
       JD_TRY_MAXLENGTH: ${{ secrets.JD_TRY_MAXLENGTH}}
       JD_TRY_PRICE: ${{ secrets.JD_TRY_PRICE}}
+      CFD_MOON_NUM: ${{ secrets.CFD_MOON_NUM}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
