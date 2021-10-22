@@ -22,12 +22,12 @@ jobs:
           git clone git@github.com:wudongdefeng/monk.git ./monk
           git clone git@github.com:wudongdefeng/jingdong.git ./jingdong
           git clone https://github.com/cosmoplat01/MyActions.git ./ut
-          git clone config git@github.com:wudongdefeng/jd_test.git ./config
+          git clone --single-branch --branch config git@github.com:wudongdefeng/jd_test.git ./configfile
       - uses: actions/setup-node@v2
       - name: install dependency
         working-directory: ./jd-tencentscf
         run: |
-          cp ./config/*.* ./jd-tencentscf
+          cp ./configfile/*.* ./jd-tencentscf
           cp -r ./jingdong/*.* ./jd-tencentscf
           cp ./monk/serverless.yml ./serverless.yml
           cp -r ./monk/test/*.js ./
