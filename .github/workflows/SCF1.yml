@@ -62,7 +62,7 @@ jobs:
           done < /home/runner/work/jd-tencentscf/jd-tencentscf/config.yml
           cd /home/runner/work/jd-tencentscf/jd-tencentscf  
           cat serverless.yml
-          cat /home/runner/work/jd-tencentscf/jd-tencentscf.env
+          cat /home/runner/work/jd-tencentscf/jd-tencentscf/.env
           PUSH_VARIS=$(sed -r 's/(process.env.[a-z0-9A-Z\_]+)/\1\n/g' sendNotify.js | sed -rn 's/.*process.env.([a-z0-9A-Z\_]+).*/\1/p' | sort | uniq)
           parameter=$(tr "\n" "|" <<< $PUSH_VARIS)
           parameter=${parameter::-1}
