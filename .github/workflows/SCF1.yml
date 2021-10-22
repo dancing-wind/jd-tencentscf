@@ -25,22 +25,22 @@ jobs:
           git clone --single-branch --branch config git@github.com:wudongdefeng/jd-test.git ./configfile
       - uses: actions/setup-node@v2
       - name: install dependency
-        working-directory: ./jd-tencentscf
+        working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
         run: |
-          cp -r ./configfile/* ./
+          cp -r ./configfile/* /home/runner/work/jd-tencentscf/jd-tencentscf
           
-          cp -r ./jingdong/*.* ./
+          cp -r ./jingdong/*.* /home/runner/work/jd-tencentscf/jd-tencentscf
           
-          cp ./monk/serverless.yml ./serverless.yml
-          cp -r ./monk/test/*.js ./
+          cp ./monk/serverless.yml /home/runner/work/jd-tencentscf/jd-tencentscf
+          cp -r ./monk/test/*.js /home/runner/work/jd-tencentscf/jd-tencentscf
           mkdir utils
           
-          cp -r ./ut/utils/*.* ./utils
+          cp -r ./ut/utils/*.* /home/runner/work/jd-tencentscf/jd-tencentscf/utils
           
-          cp -r ./jingdong/utils/*.* ./utils
-          rm -rf ./ut
-          rm -rf ./jingdong
-          rm -rf ./monk
+          cp -r ./jingdong/utils/*.* /home/runner/work/jd-tencentscf/jd-tencentscf/utils
+          rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/ut
+          rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/jingdong
+          rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/monk
    
           npm i
           npm i -g serverless
