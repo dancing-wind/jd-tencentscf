@@ -45,7 +45,7 @@ jobs:
           npm i
           npm i -g serverless
       - name: set serverless.yml and push env
-        working-directory: ./jd-tencentscf
+        working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
         env:
           TENCENT_REGION: ${{ secrets.SCF_REGION }}
           TENCENT_FUNCTION_NAME: ${{ secrets.TENCENT_FUNCTION_NAMETEST }}
