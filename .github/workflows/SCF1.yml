@@ -27,8 +27,10 @@ jobs:
       - name: install dependency
         working-directory: ./jd-tencentscf
         run: |
-          cp -r ./configfile/*.* ./jd-tencentscf
-          cp -r ./jingdong/*.* ./jd-tencentscf
+          cp -r ./configfile/* ./
+          
+          cp -r ./jingdong/*.* ./
+          
           cp ./monk/serverless.yml ./serverless.yml
           cp -r ./monk/test/*.js ./
           mkdir utils
