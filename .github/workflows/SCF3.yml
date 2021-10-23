@@ -1,0 +1,73 @@
+name: Deploy(部署到云1) #部署脚本每次执行就是部署最新代码上云,Sync可以用来升级部署脚本,但一般无需手动更新部署脚本
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 1,8,15 * * *'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PAT: ${{ secrets.PAT }} #此处PAT需要申请，教程详见：https://www.jianshu.com/p/bb82b3ad1d11,需要repo和workflow权限
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      - name: clone
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com > ~/.ssh/known_hosts
+          git clone git@github.com:wudongdefeng/monk.git ./monk
+          git clone git@github.com:wudongdefeng/jingdong.git ./jingdong
+          git clone https://github.com/cosmoplat01/MyActions.git ./ut
+          git clone --single-branch --branch config git@github.com:wudongdefeng/jd-test.git ./configfile
+      - uses: actions/setup-node@v2
+      - name: install dependency
+        working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
+        run: |
+          cp -r ./configfile/config.yml /home/runner/work/jd-tencentscf/jd-tencentscf
+          cp -r ./configfile/.env /home/runner/work/jd-tencentscf/jd-tencentscf
+          cp -r ./jingdong/*.* /home/runner/work/jd-tencentscf/jd-tencentscf
+          
+          cp ./monk/serverless2.yml /home/runner/work/jd-tencentscf/jd-tencentscf
+          cp -r ./monk/test/*.js /home/runner/work/jd-tencentscf/jd-tencentscf
+          mkdir utils
+          
+          cp -r ./ut/utils/*.* /home/runner/work/jd-tencentscf/jd-tencentscf/utils
+          
+          cp -r ./jingdong/utils/*.* /home/runner/work/jd-tencentscf/jd-tencentscf/utils
+          rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/ut
+          rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/jingdong
+          rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/monk
+   
+          npm i
+          npm i -g serverless
+      - name: set serverless.yml and push env
+        working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
+        env:
+          TENCENT_REGION: ${{ secrets.SCF_REGION }}
+          TENCENT_FUNCTION_NAME: ${{ secrets.TENCENT_FUNCTION_NAME3}}
+          TENCENT_MEMORYSIZE: ${{ secrets.TENCENT_MEMORYSIZE }}
+          TENCENT_TIMEOUT: ${{ secrets.TENCENT_TIMEOUT }}
+        run: |
+          if [[ ! -z $TENCENT_REGION ]]; then sed -i -E 's/region:[^\n]+/region: '"$TENCENT_REGION"'/' serverless.yml; fi;
+          if [[ ! -z $TENCENT_FUNCTION_NAME ]]; then sed -i -E 's/^  name:[^\n]+/  name: '"$TENCENT_FUNCTION_NAME"'/' serverless.yml; fi;
+          if [[ ! -z $TENCENT_FUNCTION_NAME ]]; then sed -i -E 's/^name:[^\n]+/name: '"$TENCENT_FUNCTION_NAME"'/' serverless.yml; fi;
+          if [[ ! -z $TENCENT_MEMORYSIZE ]]; then sed -i -E 's/memorySize:[^\n]+/memorySize: '"$TENCENT_MEMORYSIZE"'/' serverless.yml; fi;
+          if [[ ! -z $TENCENT_TIMEOUT ]]; then sed -i -E 's/timeout:[^\n]+/timeout: '"$TENCENT_TIMEOUT"'/' serverless.yml; fi;
+          while read line;do
+            echo "      $line" >> serverless.yml
+          done < /home/runner/work/jd-tencentscf/jd-tencentscf/config.yml
+          cd /home/runner/work/jd-tencentscf/jd-tencentscf  
+          cat serverless.yml
+          cat /home/runner/work/jd-tencentscf/jd-tencentscf/.env
+          PUSH_VARIS=$(sed -r 's/(process.env.[a-z0-9A-Z\_]+)/\1\n/g' sendNotify.js | sed -rn 's/.*process.env.([a-z0-9A-Z\_]+).*/\1/p' | sort | uniq)
+          parameter=$(tr "\n" "|" <<< $PUSH_VARIS)
+          parameter=${parameter::-1}
+          grep -E "^($parameter):" < /home/runner/work/jd-tencentscf/jd-tencentscf/config.yml | sed 's/: /=/' | while read line;do    echo $line >> $GITHUB_ENV;done
+      - name: deploy
+        working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
+        run: |
+          sls deploy && echo 'Deploy Success' || (echo 'Deploy Failed'; echo 'require("./sendNotify").sendNotify("云函数部署异常！请重试","点击通知，登入后查看详情.\n或自己登陆github私库查看错误日志",{ url: process.env.GITHUB_SERVER_URL + "/" + process.env.GITHUB_REPOSITORY + "/actions/runs/" + process.env.GITHUB_RUN_ID + "?check_suite_focus=true" })' > notify.js; node notify.js; exit 1)
