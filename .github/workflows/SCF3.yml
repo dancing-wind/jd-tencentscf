@@ -48,7 +48,7 @@ jobs:
         working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
         env:
           TENCENT_REGION: ${{ secrets.SCF_REGION }}
-          TENCENT_FUNCTION_NAME: ${{ secrets.TENCENT_FUNCTION_NAME3}}
+          TENCENT_FUNCTION_NAME: ${{ secrets.TENCENT_FUNCTION_NAME2}}
           TENCENT_MEMORYSIZE: ${{ secrets.TENCENT_MEMORYSIZE }}
           TENCENT_TIMEOUT: ${{ secrets.TENCENT_TIMEOUT }}
         run: |
