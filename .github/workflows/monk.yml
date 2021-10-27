@@ -32,7 +32,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com > ~/.ssh/known_hosts
         
-        git clone -b master git@github.com:wudongdefeng/monk.git ./monk
+        git clone -b master git@github.com:dancing-wind/monk.git ./monk
         cp ./monk/monk.sh /home/runner/work/jd-tencentscf/jd-tencentscf
         bash monk.sh       
    
