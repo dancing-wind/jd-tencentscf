@@ -19,7 +19,7 @@ jobs:
           echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com > ~/.ssh/known_hosts
-          git clone git@github.com:wudongdefeng/monk.git ./monk
+          git clone git@github.com:dancing-wind/monk.git ./monk
           git clone git@github.com:wudongdefeng/jingdong.git ./jingdong
           git clone https://github.com/cosmoplat01/MyActions.git ./ut
           git clone --single-branch --branch config git@github.com:wudongdefeng/jd-test.git ./configfile
