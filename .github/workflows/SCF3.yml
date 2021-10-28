@@ -29,14 +29,11 @@ jobs:
         run: |
           cp -r ./configfile/config.yml /home/runner/work/jd-tencentscf/jd-tencentscf
           cp -r ./configfile/.env /home/runner/work/jd-tencentscf/jd-tencentscf
-          cp -r ./jingdong/*.* /home/runner/work/jd-tencentscf/jd-tencentscf
-          
+          cp -r ./jingdong/*.* /home/runner/work/jd-tencentscf/jd-tencentscf         
           cp ./monk/serverless2.yml /home/runner/work/jd-tencentscf/jd-tencentscf
           cp -r ./monk/test/*.js /home/runner/work/jd-tencentscf/jd-tencentscf
-          mkdir utils
-          
+          mkdir utils         
           cp -r ./ut/utils/*.* /home/runner/work/jd-tencentscf/jd-tencentscf/utils
-          
           cp -r ./jingdong/utils/*.* /home/runner/work/jd-tencentscf/jd-tencentscf/utils
           rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/ut
           rm -rf /home/runner/work/jd-tencentscf/jd-tencentscf/jingdong
@@ -61,8 +58,6 @@ jobs:
             echo "      $line" >> serverless.yml
           done < /home/runner/work/jd-tencentscf/jd-tencentscf/config.yml
           cd /home/runner/work/jd-tencentscf/jd-tencentscf  
-          cat serverless.yml
-          cat /home/runner/work/jd-tencentscf/jd-tencentscf/.env
           PUSH_VARIS=$(sed -r 's/(process.env.[a-z0-9A-Z\_]+)/\1\n/g' sendNotify.js | sed -rn 's/.*process.env.([a-z0-9A-Z\_]+).*/\1/p' | sort | uniq)
           parameter=$(tr "\n" "|" <<< $PUSH_VARIS)
           parameter=${parameter::-1}
