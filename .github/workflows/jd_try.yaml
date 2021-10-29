@@ -29,7 +29,8 @@ jobs:
             - name: run
               run: |
                   
-                  npm install                   
+                  npm install
+                  node jd_unsubscribe.js
                   node jd_try.js
                                     
               env:   
