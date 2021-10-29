@@ -18,7 +18,7 @@ jobs:
               run: |
                   git clone -b jd_scripts https://github.com/Aaron-lv/sync.git ~/jd
                   cp -r ~/jd/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
-                  sed -i 's/GITHUB/GITLAB' jd_try.js 
+                  sed -i 's\GITHUB/GITLAB' jd_try.js 
                   sed -i '/GITHUB/,+6d' jdCookie.js
                   
             - name: Use Node.js 14.x
