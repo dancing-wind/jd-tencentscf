@@ -1,0 +1,47 @@
+name: fl
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "5 1 * * *"
+    watch:
+        types: [started]
+    repository_dispatch:
+        types: fl
+
+jobs:
+    build:
+        runs-on: ubuntu-latest        
+        steps:
+            #- uses: actions/checkout@v1
+            - name: Checkout
+              run: |
+                  git clone -b jd_scripts https://github.com/Aaron-lv/sync.git ~/jd
+                  curl -O https://raw.githubusercontent.com/zero205/JD_tencent_scf/main/jd_fanli.py
+             
+                  cp -r ~/jd/*.* /home/runner/work/jd-tencentscf/jd-tencentscf
+                  
+                  sed -i '/GITHUB/,+6d' jdCookie.js
+                  
+            
+
+            - name: 'Set up Python'
+              uses: actions/setup-python@v1
+              with:
+                python-version: 3.7
+
+            - name: 'Install requirements'
+              run: pip install requests
+            - name: run
+              run: |
+                  
+                  python jd_fanli.py
+                                    
+              env:   
+                  JD_COOKIE: ${{ secrets.JD_COOKIE}}
+                  JD_DEBUG: false
+                  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN}}
+                  TG_USER_ID: ${{ secrets.TG_USER_ID}}
+                  QYWX_KEY: ${{ secrets.QYWX_KEY}}
+                  QYWX_AM: ${{ secrets.QYWX_AM}}
+             
