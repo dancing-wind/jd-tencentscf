@@ -39,7 +39,7 @@ jobs:
                                     
               env:   
                   JD_COOKIE: ${{ secrets.JD_COOKIE}}
-                  JD_DEBUG: true
+                  JD_DEBUG: false
                   TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN}}
                   TG_USER_ID: ${{ secrets.TG_USER_ID}}
                   QYWX_KEY: ${{ secrets.QYWX_KEY}}
