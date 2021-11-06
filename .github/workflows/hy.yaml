@@ -1,4 +1,4 @@
-name: try
+name: hy
 
 on:
     workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     watch:
         types: [started]
     repository_dispatch:
-        types: try
+        types: hy
 
 jobs:
     build:
@@ -23,15 +23,18 @@ jobs:
                    
                   sed -i '/GITHUB/,+6d' jdCookie.js
                   
-            - name: Use Node.js 14.x
-              uses: actions/setup-node@v1
-              with:
-                  node-version: 14.15.0
-                  
+            
+
+           - name: 'Set up Python'
+             uses: actions/setup-python@v1
+             with:
+               python-version: 3.7
+
+            - name: 'Install requirements'
+              run: pip install -r ./requirements.txt
             - name: run
               run: |
                   
-                  pip3 install -r requirments.txt
                   python jd_hyjcoin.py
                                     
               env:   
