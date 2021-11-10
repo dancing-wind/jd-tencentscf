@@ -3,7 +3,7 @@ name: plantBeans
 on:
     workflow_dispatch:
     schedule:
-        - cron: "1 10,18,22 * * *"
+        - cron: "1 4,18,22 * * *"
     watch:
         types: [started]
     repository_dispatch:
