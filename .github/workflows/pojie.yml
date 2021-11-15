@@ -1,0 +1,36 @@
+name: pojie
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "5 1 * * *"
+    watch:
+        types: [started]
+    repository_dispatch:
+        types: pojie
+
+jobs:
+    build:
+        runs-on: ubuntu-latest        
+        steps:
+            #- uses: actions/checkout@v1
+            - name: Checkout
+              run: |
+                  git clone -b master https://github.com/NobyDa/Script ~/jd
+                  cp ~/jd/52pojie-DailyBonus/52pojie.js ./                            
+
+            - name: Use Node.js 14.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14.15.0
+
+            - name: 'Install requirements'
+              run: npm install got tough-cookie -g
+
+            - name: run
+              run: |
+                  node 52pojie.js
+                                                      
+              env:   
+                  CookieWA: ${{ secrets.CookieWA}}
+                               
