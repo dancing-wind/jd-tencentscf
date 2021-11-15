@@ -17,8 +17,8 @@ jobs:
             - name: Checkout
               run: |
                   git clone -b master https://github.com/NobyDa/Script ~/jd
-                  cp ~/jd/52pojie-DailyBonus/52pojie.js ./                            
-
+                  cp ~/jd/52pojie-DailyBonus/52pojie.js /home/runner/work/jd-tencentscf/jd-tencentscf                            
+                  
             - name: Use Node.js 14.x
               uses: actions/setup-node@v1
               with:
