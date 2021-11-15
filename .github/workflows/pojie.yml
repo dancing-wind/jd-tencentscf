@@ -17,7 +17,7 @@ jobs:
             - name: Checkout
               run: |
                   git clone -b master https://github.com/NobyDa/Script ~/jd
-                  cp ~/jd/52pojie-DailyBonus/52pojie.js /home/runner/work/jd-tencentscf/jd-tencentscf                            
+                  cp ~/jd/52pojie-DailyBonus/52pojie.js ./                           
                   
             - name: Use Node.js 14.x
               uses: actions/setup-node@v1
@@ -29,8 +29,8 @@ jobs:
 
             - name: run
               run: |
-                  node 52pojie.js
-                                                      
+                  npm install got tough-cookie -g
+                  node 52pojie.js                                    
               env:   
                   CookieWA: ${{ secrets.CookieWA}}
                                
