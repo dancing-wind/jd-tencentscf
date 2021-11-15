@@ -2,6 +2,7 @@ name: pojie
 
 on:
     workflow_dispatch:
+    push:
     schedule:
         - cron: "5 1 * * *"
     watch:
