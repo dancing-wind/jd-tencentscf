@@ -42,9 +42,9 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
         QYWX_AM: ${{ secrets.QYWX_AM }}
       
-   - name: git-sync
-     uses: wei/git-sync@v3
-     with:
+    - name: git-sync
+      uses: wei/git-sync@v3
+      with:
         source_repo: "git@github.com:wudongdefeng/updateTeam.git"
         source_branch: "main"
         destination_repo: "git@code.aliyun.com:wudongdefeng/updateteam.git"
