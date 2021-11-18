@@ -1,0 +1,66 @@
+name: code推送 
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "2 16,23,0-15/4 * * *"
+  watch:
+    types: started
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+
+    steps:
+    - uses: actions/checkout@main
+      
+    - name: time GMT+8 北京时间
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai' 
+    - name: 获取当前日期
+      id: date
+      run: echo "::set-output name=DATE::$(date +'%Y-%m-%d %H:%M:%S')" 
+   
+    - uses: actions/checkout@v1
+    - name: Clone source code 克隆源码
+      run: |
+        
+        mkdir -p ~/.ssh
+        echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com > ~/.ssh/known_hosts
+        
+        git clone -b master git@github.com:wudongdefeng/monk.git ./monk
+        cp ./monk/code.sh /home/runner/work/jd-tencentscf/jd-tencentscf
+        bash code.sh       
+      env:
+        JD_COOKIE: ${{ secrets.JD_COOKIE }}
+        JD_DEBUG: ${{ secrets.JD_DEBUG }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+        QYWX_AM: ${{ secrets.QYWX_AM }}
+      
+   - name: git-sync
+     uses: wei/git-sync@v3
+     with:
+        source_repo: "git@github.com:wudongdefeng/updateTeam.git"
+        source_branch: "main"
+        destination_repo: "git@code.aliyun.com:wudongdefeng/updateteam.git"
+        destination_branch: "master"
+        source_ssh_private_key: ${{ secrets.USER_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+        destination_ssh_private_key: ${{ secrets.ALIYUN_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`     
+        
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+          token: ${{ secrets.USER_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 1
+          keep_minimum_runs: 1 
+
+   
+        
+    
+    
