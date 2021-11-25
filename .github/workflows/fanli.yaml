@@ -16,7 +16,7 @@ jobs:
             #- uses: actions/checkout@v1
             - name: Checkout
               run: |
-                  git clone -b jd_scripts https://github.com/wudongdefeng/tem-update.git ~/jd
+                  git clone -b master https://github.com/wudongdefeng/tem-update.git ~/jd
                                
 
             - name: 'Set up Python'
