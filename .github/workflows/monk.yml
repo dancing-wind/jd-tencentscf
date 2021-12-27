@@ -23,7 +23,7 @@ jobs:
       id: date
       run: echo "::set-output name=DATE::$(date +'%Y-%m-%d %H:%M:%S')" 
    
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Clone source code 克隆源码
       run: |
         
