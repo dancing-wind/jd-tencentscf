@@ -27,7 +27,8 @@ jobs:
       - name: install dependency
         working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
         run: |          
-          cp -r ./monk/config/*.* /home/runner/work/jd-tencentscf/jd-tencentscf          
+          cp ./monk/config/.env /home/runner/work/jd-tencentscf/jd-tencentscf
+          cp ./monk/config/config.yml /home/runner/work/jd-tencentscf/jd-tencentscf
           mv ./monk/scf.yml ./jingdong/serverless.yml  
           cp -r ./jingdong/*.* /home/runner/work/jd-tencentscf/jd-tencentscf         
           cp -r ./monk/test/*.js* /home/runner/work/jd-tencentscf/jd-tencentscf
