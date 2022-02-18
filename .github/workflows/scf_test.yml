@@ -26,8 +26,7 @@ jobs:
       - uses: actions/setup-node@v2
       - name: install dependency
         working-directory: /home/runner/work/jd-tencentscf/jd-tencentscf
-        run: |
-          
+        run: |          
           cp -r ./monk/config/*.* /home/runner/work/jd-tencentscf/jd-tencentscf          
           mv ./monk/scf.yml ./jingdong/serverless.yml  
           cp -r ./jingdong/*.* /home/runner/work/jd-tencentscf/jd-tencentscf         
