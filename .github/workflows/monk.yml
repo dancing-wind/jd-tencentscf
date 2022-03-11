@@ -57,7 +57,7 @@ jobs:
             "textcard" : {
               "title" : "仓库更新提醒",
               "description" : "<div class=\"gray\">'"$(date "+%Y年%m月%d日 %H:%M:%S")"'</div><div class=\"normal\">仓库已更新</div><div class=\"highlight\">请及时查看</div>",
-              "url" : "https://github.com/dancing-wind/jingdong"
+              "url" : "https://github.com/wudongdefeng/tem-update"
             }
           }'
           
