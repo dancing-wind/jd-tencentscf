@@ -43,8 +43,7 @@ jobs:
           access_token=`echo ${RTN_gettoken} | jq -r '.access_token'`
           echo "ACCESS_TOKEN=${access_token}" >> $GITHUB_ENV
 
-          echo "::set-output name=status::success"
-
+          
     - name: Notification
       if: steps.get_token.outputs.status == 'success'
       run: |
