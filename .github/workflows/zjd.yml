@@ -30,6 +30,7 @@ jobs:
                   
             - name: run
               run: |
+                cd ~/jd
                 ts-node jd_zjd_v0.2.ts
                                     
               env:   
