@@ -20,7 +20,7 @@ jobs:
                   cd ~/jd
                   npm install -g typescript
                   npm install -g ts-node                  
-                  sed -i "s/GITHUB/GITLAB/g" jd_try.js 
+                  sed -i "s/GITHUB/GITLAB/g" jd_zjd_v0.2.ts 
                   sed -i '/GITHUB/,+6d' jdCookie.js
                   
             - name: Use Node.js 14.x
