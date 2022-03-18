@@ -32,8 +32,7 @@ jobs:
                 npm install -g typescript
                 npm install -g ts-node                  
                 sed -i "s/GITHUB/GITLAB/g" jd_zjd_v0.2.ts 
-                sed -i '/GITHUB/,+6d' jdCookie.js
-            
+                sed -i 's/GITHUB/GITLAB/g' jdCookie.js
                 ts-node jd_zjd_v0.2.ts
                                     
               env:   
