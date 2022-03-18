@@ -25,7 +25,7 @@ jobs:
                   
             - name: run
               run: |
-                git clone -b master https://github.com/wudongdefeng/tem-update.git ~/jd
+                git clone -b main https://github.com/JDHelloWorld/jd_scripts.git ~/jd
                 cd ~/jd
                 npm install
                 npm install axios
