@@ -27,6 +27,7 @@ jobs:
               run: |
                 git clone -b master https://github.com/wudongdefeng/tem-update.git ~/jd
                 cd ~/jd
+                npm install
                 npm install -g typescript
                 npm install -g ts-node                  
                 sed -i "s/GITHUB/GITLAB/g" jd_zjd_v0.2.ts 
