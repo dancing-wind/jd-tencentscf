@@ -1,0 +1,63 @@
+name: OPENCARD
+
+on:
+    workflow_dispatch:
+    
+    watch:
+        types: [started]
+    repository_dispatch:
+        types: OPENCARD
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        if: github.event.repository.owner.id == github.event.sender.id
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v2
+
+          - name: 'Set up Python'
+            uses: actions/setup-python@v1
+            with:
+              python-version: 3.7
+
+          - name: 'Install requirements'
+            run: pip install -r ./requirements.txt          
+                  
+          
+          - name: commit
+            run: |
+            
+             mkdir -p ~/.ssh
+             echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+             chmod 600 ~/.ssh/id_rsa
+             ssh-keyscan github.com > ~/.ssh/known_hosts
+             git clone git@github.com:wudongdefeng/opencard.git ~/opencard
+             cd ~/opencard
+             sed -i "s/COOKIE1/${{ secrets.JD_COOKIE1 }}/g" config.yaml
+             sed -i "s/COOKIE1/${{ secrets.JD_COOKIE1 }}/g" tools/traversal.py
+             python tools/traversal.py            
+             cp -u tools/traversal1.py tools/traversal.py
+             cp -u tools/shopid.yaml shopid.yaml            
+             python main.py 
+             
+          - name: push   
+            run: |
+              git clone git@github.com:wudongdefeng/jd-temporary.git ~/tem
+              cp ~/opencard/shopid.yaml ~/tem
+              cd ~/tem
+              git config --global credential.helper store
+              git config --local user.email "32961310+wudongdefeng@users.noreply.github.com"
+              git config --local user.name "wudongdefeng"
+              git add .
+              git commit -m "更新shopid" 
+              git push
+  
+            
+              
+
+ 
+           
+         
+                        
+                
