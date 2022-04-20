@@ -1,0 +1,63 @@
+name: wool推送 
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 15 * * *"
+  watch:
+    types: started
+  repository_dispatch:
+    types: wool
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: time GMT+8 北京时间
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai' 
+    - name: 获取当前日期
+      id: date
+      run: echo "::set-output name=DATE::$(date +'%Y-%m-%d %H:%M:%S')" 
+   
+    - uses: actions/checkout@v2
+    - name: Clone source code 克隆源码
+      run: |
+        
+        mkdir -p ~/.ssh
+        echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com > ~/.ssh/known_hosts
+        
+        git clone -b master git@github.com:wudongdefeng/monk.git ./monk
+        cp ./monk/monk.sh /home/runner/work/jd-tencentscf/jd-tencentscf
+        bash woll.sh       
+
+    - name: Get WECHATWORK ACCESS TOKEN
+      id: get_token
+      run: |
+          RTN_gettoken=`curl --location --request GET "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=${{ secrets.WECHATWORK_CORPID }}&corpsecret=${{ secrets.WECHATWORK_APP_CORPSECRET }}"`
+          access_token=`echo ${RTN_gettoken} | jq -r '.access_token'`
+          echo "ACCESS_TOKEN=${access_token}" >> $GITHUB_ENV
+
+          
+    - name: Notification
+      if: steps.get_token.outputs.status == 'success'
+      run: |
+          curl --location --request POST "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${ACCESS_TOKEN}" \
+          --header 'Content-Type: application/json' \
+          --data-raw '{
+            "touser" : "@all",
+            "msgtype" : "textcard",
+            "agentid" : '"${{ secrets.WECHATWORK_APP_AGENTID }}"',
+            "textcard" : {
+              "title" : "仓库更新提醒",
+              "description" : "<div class=\"gray\">'"$(date "+%Y年%m月%d日 %H:%M:%S")"'</div><div class=\"normal\">wool仓库已更新</div><div class=\"highlight\">请及时查看</div>",
+              "url" : "https://github.com/wudongdefeng/tem-update/tree/wool"
+            }
+          }'
+          
