@@ -32,7 +32,7 @@ jobs:
         echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com > ~/.ssh/known_hosts
-        echo $repo_content
+        
         git clone -b master git@github.com:wudongdefeng/monk.git ./monk
         cp ./monk/push.sh /home/runner/work/jd-tencentscf/jd-tencentscf
         chmod +x ./push.sh
