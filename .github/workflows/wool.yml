@@ -39,7 +39,7 @@ jobs:
         cp ./monk/wool.sh /home/runner/work/jd-tencentscf/jd-tencentscf
         bash wool.sh
       env:        
-        repo_content: ${{ secrets.wool_content }} 
+        repo_content: "wool仓库已更新"
     - name: Get WECHATWORK ACCESS TOKEN
       id: get_token
       run: |
