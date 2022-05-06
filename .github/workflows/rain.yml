@@ -1,0 +1,37 @@
+name: rain推送 
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0-35/5 13 * * *"
+  watch:
+    types: started
+  repository_dispatch:
+    types: rain
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: time GMT+8 北京时间
+      run: |
+        sudo timedatectl set-timezone 'Asia/Shanghai' 
+    - name: 获取当前日期
+      id: date
+      run: echo "::set-output name=DATE::$(date +'%Y-%m-%d %H:%M:%S')" 
+   
+    - uses: actions/checkout@v2
+    - name: Clone source code 克隆源码
+      run: |
+        
+        mkdir -p ~/.ssh
+        echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com > ~/.ssh/known_hosts
+        
+        git clone -b master git@github.com:wudongdefeng/monk.git ~/monk
+        bash ~/monk/redrain.sh 
