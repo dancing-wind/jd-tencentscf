@@ -16,8 +16,15 @@ jobs:
             #- uses: actions/checkout@v1
             - name: Checkout
               run: |
-                  git clone -b jd_scripts https://github.com/Aaron-lv/sync.git ~/jd
-                  cp -r ~/jd/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
+                  mkdir -p ~/.ssh
+                  echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan github.com > ~/.ssh/known_hosts
+        
+                  git clone -b master git@github.com:wudongdefeng/monk.git ./monk
+                  cp -r ~/monk/backup/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
+                  
+                  cp -r ~/monk/test/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
                   sed -i "s/GITHUB/GITLAB/g" jd_try.js 
                   sed -i '/GITHUB/,+6d' jdCookie.js
                   
