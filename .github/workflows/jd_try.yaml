@@ -37,7 +37,7 @@ jobs:
                   curl -O https://raw.githubusercontent.com/wudongdefeng/jd-temporary/main/package.json
                 
                   npm install 
-                  node jd_unsubscribe.js
+                  
                   node jd_try.js
                                     
               env:   
