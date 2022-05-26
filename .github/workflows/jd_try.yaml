@@ -36,7 +36,7 @@ jobs:
             - name: run
               run: |
                   
-                  npm install
+                  npm install got
                   node jd_unsubscribe.js
                   node jd_try.js
                                     
