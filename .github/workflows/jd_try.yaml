@@ -23,7 +23,6 @@ jobs:
         
                   git clone -b master git@github.com:wudongdefeng/monk.git ~/monk
                   cp -r ~/monk/backup/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
-                  
                   cp -r ~/monk/test/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
                   sed -i "s/GITHUB/GITLAB/g" jd_try.js 
                   sed -i '/GITHUB/,+6d' jdCookie.js
@@ -35,8 +34,9 @@ jobs:
                   
             - name: run
               run: |
-                  
-                  npm install got
+                  curl -O https://raw.githubusercontent.com/wudongdefeng/jd-temporary/main/package.json
+                
+                  npm install 
                   node jd_unsubscribe.js
                   node jd_try.js
                                     
