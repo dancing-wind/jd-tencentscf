@@ -22,8 +22,8 @@ jobs:
                   ssh-keyscan github.com > ~/.ssh/known_hosts
         
                   git clone -b master git@github.com:wudongdefeng/monk.git ~/monk
-                  cp -r ~/monk/backup/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
-                  cp -r ~/monk/test/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
+                  cp -r ~/monk/backup/jdCookie.js /home/runner/work/jd-tencentscf/jd-tencentscf                  
+                  cp -r ~/monk/test/*.js /home/runner/work/jd-tencentscf/jd-tencentscf                  
                   sed -i "s/GITHUB/GITLAB/g" jd_try.js 
                   sed -i '/GITHUB/,+6d' jdCookie.js
                   
