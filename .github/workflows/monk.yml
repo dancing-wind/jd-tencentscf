@@ -35,9 +35,9 @@ jobs:
         
         git clone -b master git@github.com:wudongdefeng/monk.git ./monk
         cp ./monk/monk.sh /home/runner/work/jd-tencentscf/jd-tencentscf
-        bash monk.sh       
+        bash monk.sh     
       env:
-        repo_content: ${{ secrets.repo_content }}   
+        repo_content: $(git diff --name-only HEAD~1)"已更新" 
     - name: Get WECHATWORK ACCESS TOKEN
       id: get_token
       run: |
