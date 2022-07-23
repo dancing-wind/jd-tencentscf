@@ -60,27 +60,7 @@ jobs:
           }'
           
 
-    - name: git-sync
-      uses: wei/git-sync@v3
-      with:
-          source_repo: "git@github.com:wudongdefeng/jd-base.git"
-          source_branch: "v3"
-          destination_repo: "git@gitee.com:wudongdefeng/jd-base.git"
-          destination_branch: "v3"
 
-          source_ssh_private_key: ${{ secrets.USER_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`      
-    - name: git-sync
-      uses: wei/git-sync@v3
-      with:
-          source_repo: "git@github.com:wudongdefeng/tem-update.git"
-          source_branch: "master"
-          destination_repo: "git@gitee.com:wudongdefeng/jd_scripts.git"
-          destination_branch: "master"
-
-          source_ssh_private_key: ${{ secrets.USER_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`     
-        
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
       with:
