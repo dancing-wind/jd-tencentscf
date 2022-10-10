@@ -22,18 +22,19 @@ jobs:
             - uses: pnpm/action-setup@v2.0.1
               with:
                   version: 6.20.3
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
+            - name: Setup Node.js
+              uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: 'pnpm'
+                node-version: "12.x"
+            - run: npm install --production
+            - run: sudo npm i -g ts-node
+            - run: npm install typescript
                   
             # Runs typescript
             - name: Run tsc
               run: |
                 git clone https://github.com/JDHelloWorld/jd_scripts.git jd_scripts
-                cd ./jd_scripts
-                pnpm i
+                cd ./jd_scripts               
                 ts-node --files jd_zjd.ts
                 env:   
                   JD_COOKIE: ${{ secrets.JD_COOKIE}}
