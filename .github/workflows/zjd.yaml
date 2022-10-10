@@ -36,6 +36,6 @@ jobs:
                 git clone https://github.com/JDHelloWorld/jd_scripts.git jd_scripts
                 cd ./jd_scripts
                 npm install
-                ts-node --files jd_zjd.ts
+                ts-node jd_zjd.ts
               env:   
                   JD_COOKIE: ${{ secrets.JD_COOKIE}}
