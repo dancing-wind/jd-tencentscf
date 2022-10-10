@@ -37,5 +37,5 @@ jobs:
                 cd ./jd_scripts
                 npm install
                 ts-node --files jd_zjd.ts
-                env:   
+              env:   
                   JD_COOKIE: ${{ secrets.JD_COOKIE}}
