@@ -18,8 +18,8 @@ jobs:
               run: |
                   git clone -b master https://github.com/wudongdefeng/tem-update.git ~/jd
                   cp -r ~/jd/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
-                  sed -i 's/github/gitlab' jd_fruit.js
-                  sed -i 's/github/gitlab' jdCookie.js
+                  sed -i 's/github/gitlab/g' jd_fruit.js
+                  sed -i 's/github/gitlab/g' jdCookie.js
                   
             - name: Use Node.js 14.x
               uses: actions/setup-node@v1
