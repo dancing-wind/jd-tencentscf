@@ -1,13 +1,13 @@
-name: water
+name: fruit
 
 on:
     workflow_dispatch:
     schedule:
-        - cron: "7 */1 * * *"
+        - cron: "7 6-18 * * *"
     watch:
         types: [started]
     repository_dispatch:
-        types: water
+        types: fruit
 
 jobs:
     build:
@@ -16,7 +16,7 @@ jobs:
             #- uses: actions/checkout@v1
             - name: Checkout
               run: |
-                  git clone -b main https://github.com/passerby-b/JDDJ ~/jd
+                  git clone -b master https://github.com/wudongdefeng/tem-update.git ~/jd
                   cp -r ~/jd/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
                   sed -i '/GITHUB/,+6d' jddjCookie.js 
                   sed -i '/GITHUB/,+6d' jdCookie.js
@@ -29,9 +29,9 @@ jobs:
             - name: run
               run: |
                   npm install                   
-                  node jddj_fruit_collectWater.js                  
+                  node jd_fruit.js                  
               env:   
-                  JD_COOKIE: ${{ secrets.JD_COOKIE}}
+                  JD_COOKIE: ${{ secrets.JD_COOKIE1}}
                   JD_DEBUG: false
                   TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN}}
                   TG_USER_ID: ${{ secrets.TG_USER_ID}}
