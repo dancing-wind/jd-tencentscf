@@ -18,7 +18,7 @@ jobs:
               run: |
                   git clone -b master https://github.com/wudongdefeng/tem-update.git ~/jd
                   cp -r ~/jd/*.* /home/runner/work/jd-tencentscf/jd-tencentscf                  
-                  sed -i '/GITHUB/,+6d' jddjCookie.js 
+                  
                   sed -i '/GITHUB/,+6d' jdCookie.js
                   
             - name: Use Node.js 14.x
