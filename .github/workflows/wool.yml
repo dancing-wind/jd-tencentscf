@@ -40,26 +40,7 @@ jobs:
         bash wool.sh
       env:        
         repo_content: "wool仓库已更新"
-    - name: copy files
-      run: |
-        #git clone https://github.com/wudongdefeng/wool.git ~/wool
-        git clone git@github.com/wudongdefeng/toulu.git ~/lu
-        cp -r ~/wool/gqcq_wx_lottery.js ~/lu
-        cp -r ~/wool/58tc.js ~/lu
-        cp -r ~/wool/meituan.js ~/lu
-        cp -r ~/wool/app_txzxg.js ~/lu
-        cp -r ~/wool/jryc.js ~/lu
-        cp -r ~/wool/gqsl.js ~/lu
-        cp -r ~/wool/zssq.js ~/lu
-        cp -r ~/wool/gqcq_wx.js ~/lu
-        cp -r ~/wool/gjzz.js ~/lu
-        cp -r ~/wool/sfsy.js ~/lu
-        cp -r ~/wool/sendNotify.js ~/lu
-        cp -r ~/wool/txstockV2.js ~/lu
-        cd ~/lu
-        git add .
-        git commit -m "update"
-        git push
+        
     - name: Get WECHATWORK ACCESS TOKEN
       id: get_token
       run: |
