@@ -56,6 +56,7 @@ jobs:
         cp -r ~/wool/sfsy.js ~/lu
         cp -r ~/wool/sendNotify.js ~/lu
         cp -r ~/wool/txstockV2.js ~/lu
+        cd ~/lu
         git add .
         git commit -m "update"
         git push
