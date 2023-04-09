@@ -42,7 +42,7 @@ jobs:
         repo_content: "wool仓库已更新"
     - name: copy files
       run: |
-        git clone https://github.com/wudongdefeng/wool.git ~/wool
+        #git clone https://github.com/wudongdefeng/wool.git ~/wool
         git clone https://github.com/wudongdefeng/toulu.git ~/lu
         cp -r ~/wool/gqcq_wx_lottery.js ~/lu
         cp -r ~/wool/58tc.js ~/lu
