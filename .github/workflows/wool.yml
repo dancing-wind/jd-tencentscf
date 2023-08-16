@@ -40,6 +40,7 @@ jobs:
         bash wool.sh
       env:        
         repo_content: "wool仓库已更新"
+        webhook: ${{ secrets.webhook }}
         
     - name: Get WECHATWORK ACCESS TOKEN
       id: get_token
