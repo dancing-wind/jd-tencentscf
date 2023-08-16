@@ -20,14 +20,19 @@ jobs:
     - name: time GMT+8 北京时间
       run: |
         sudo timedatectl set-timezone 'Asia/Shanghai' 
+        
     - name: 获取当前日期
       id: date
       run: echo "::set-output name=DATE::$(date +'%Y-%m-%d %H:%M:%S')" 
-   
+      
+    - name: 'Install requirements'
+      run: |
+        pip3 install requests
+        pip3 install gitpython    
+        
     - uses: actions/checkout@v2
     - name: Clone source code 克隆源码
       run: |
-        
         mkdir -p ~/.ssh
         echo -e "${{ secrets.USER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
