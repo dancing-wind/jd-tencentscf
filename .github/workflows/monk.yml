@@ -32,34 +32,8 @@ jobs:
         ssh-keyscan github.com > ~/.ssh/known_hosts
         
         git clone -b master git@github.com:wudongdefeng/monk.git ./monk
-        cp ./monk/monk.sh /home/runner/work/jd-tencentscf/jd-tencentscf
-        bash monk.sh
-        
-    - name: Get WECHATWORK ACCESS TOKEN
-      id: get_token
-      run: |
-          RTN_gettoken=`curl --location --request GET "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=${{ secrets.WECHATWORK_CORPID }}&corpsecret=${{ secrets.WECHATWORK_APP_CORPSECRET }}"`
-          access_token=`echo ${RTN_gettoken} | jq -r '.access_token'`
-          echo "ACCESS_TOKEN=${access_token}" >> $GITHUB_ENV
-
-          
-    - name: Notification
-      if: steps.get_token.outputs.status == 'success'
-      run: |
-          curl --location --request POST "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${ACCESS_TOKEN}" \
-          --header 'Content-Type: application/json' \
-          --data-raw '{
-            "touser" : "@all",
-            "msgtype" : "textcard",
-            "agentid" : '"${{ secrets.WECHATWORK_APP_AGENTID }}"',
-            "textcard" : {
-              "title" : "仓库更新提醒",
-              "description" : "<div class=\"gray\">'"$(date "+%Y年%m月%d日 %H:%M:%S")"'</div><div class=\"normal\">仓库已更新</div><div class=\"highlight\">请及时查看</div>",
-              "url" : "https://github.com/wudongdefeng/tem-update"
-            }
-          }'
-          
-
+        cp ./monk/wind.sh /home/runner/work/jd-tencentscf/jd-tencentscf
+        bash wind.sh  
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
