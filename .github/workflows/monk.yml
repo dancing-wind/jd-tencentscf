@@ -32,9 +32,7 @@ jobs:
         ssh-keyscan github.com > ~/.ssh/known_hosts
         
         git clone -b master git@github.com:wudongdefeng/monk.git ./monk
-        cp ./monk/wind.sh /home/runner/work/jd-tencentscf/jd-tencentscf
-        cp ./monk/copy.sh /home/runner/work/jd-tencentscf/jd-tencentscf
-        cp ./monk/code.txt /home/runner/work/jd-tencentscf/jd-tencentscf
+        cp ./monk/*.* /home/runner/work/jd-tencentscf/jd-tencentscf
         
         bash wind.sh  
 
